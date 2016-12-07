@@ -11,14 +11,14 @@ package ru.urfu.state.copymachine;
 public class FlashPrint extends State {
 
     @Override
-    public void doCase(Context context) throws Exception {
+    public void doCase(Copy context) throws Exception {
         super.doCase(context);
         System.out.println("Выбран документ с " + FlashPrint.class.getName().toString());
         context.setDoc(true);
     }
 
     @Override
-    public void doPrint(Context context) throws Exception {
+    public void doPrint(Copy context) throws Exception {
         super.doPrint(context);
         System.out.println("Распечатан документ с " + FlashPrint.class.getName().toString());
         context.setMoney(context.getMoney() - 1);

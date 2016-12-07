@@ -11,21 +11,21 @@ package ru.urfu.state.copymachine;
 public abstract class State implements IState {
 
     @Override
-    public void doCase(Context context) throws Exception {
+    public void doCase(Copy context) throws Exception {
         if (context.getMoney() == 0) {
             throw new Exception("Внесите пожалуйста денежные срества. Продолжение не возможно.");
         }
     }
 
     @Override
-    public void doPrint(Context context) throws Exception {
+    public void doPrint(Copy context) throws Exception {
         if (context.isDoc() == false) {
             throw new Exception("Веберите документ для печати!");
         }
     }
 
     @Override
-    public void doTakeDelivery(Context context) throws Exception {
+    public void doTakeDelivery(Copy context) throws Exception {
         if (context.getMoney() == 0) {
             throw new Exception("Нет денежных средства для возврата");
         }

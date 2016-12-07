@@ -1,50 +1,33 @@
 package ru.urfu.state;
 
-import ru.urfu.state.copymachine.Context;
+import ru.urfu.state.copymachine.Copy;
 import ru.urfu.state.copymachine.FlashPrint;
 import ru.urfu.state.copymachine.WiFiPrint;
 
 public class App {
     public static void main(String[] args) {
 
-        Context context = new Context(10);
-
+        Copy copy = new Copy();
         FlashPrint flashPrint = new FlashPrint();
-        try {
-            flashPrint.doCase(context);
-            flashPrint.doPrint(context);
-            flashPrint.doTakeDelivery(context);
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
+        copy.setMoney(10);
+        copy.setState(flashPrint);
+        copy.doCase();
+        copy.doPrint();
+        copy.doTakeDelivery();
 
-        context.setMoney(2);
+        copy.setMoney(3);
         WiFiPrint wiFiPrint = new WiFiPrint();
-        try {
-            wiFiPrint.doCase(context);
-            wiFiPrint.doPrint(context);
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
-        try {
-            wiFiPrint.doPrint(context);
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
-        try {
-            wiFiPrint.doTakeDelivery(context);
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
-        try {
-            wiFiPrint.doCase(context);
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
+        copy.setState(wiFiPrint);
+        copy.doCase();
+        copy.doPrint();
+
+        copy.doPrint();
+
+        copy.doCase();
+        copy.doPrint();
+        copy.doTakeDelivery();
+
+        copy.doCase();
+
     }
 }

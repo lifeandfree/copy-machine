@@ -8,19 +8,46 @@ package ru.urfu.state.copymachine;
 /**
  * @author lifeandfree
  */
-public class Context {
+public class Copy extends State {
     private boolean doc;
     private int money;
+    private State state;
 
-    public Context() {
+    public Copy() {
         this.money = 0;
         this.doc = false;
+        this.state = null;
 
     }
 
-    public Context(int money) {
-        setMoney(money);
-        this.doc = false;
+    public void doCase() {
+        try {
+            state.doCase(this);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public void doPrint() {
+        try {
+            state.doPrint(this);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public void doTakeDelivery() {
+        try {
+            state.doTakeDelivery(this);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
     /**
@@ -28,6 +55,13 @@ public class Context {
      */
     public int getMoney() {
         return money;
+    }
+
+    /**
+     * @return the state
+     */
+    public State getState() {
+        return state;
     }
 
     /**
@@ -53,6 +87,14 @@ public class Context {
     public void setMoney(int money) {
         this.money = money;
         System.out.println("Денежные средства: " + money);
+    }
+
+    /**
+     * @param state
+     *            the state to set
+     */
+    public void setState(State state) {
+        this.state = state;
     }
 
 }
